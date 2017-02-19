@@ -1,9 +1,6 @@
 var mongoose = require('mongoose'),
 	User = mongoose.model('user'),
 	bcrypt = require('bcrypt');
-	passport = require('passport');
-
-
 
 
 ///////////////////////////
@@ -36,8 +33,7 @@ module.exports.register = [
 					if(err) return next(err);
 					console.log(user);
 					res.redirect('/user/login');
-				});
-		
+				});	
 	}
 
 ];

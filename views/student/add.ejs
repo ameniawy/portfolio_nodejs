@@ -1,0 +1,34 @@
+
+<form method="post" action="/student/addwork" encType="multipart/form-data">
+
+	<div class="input-group">
+	  
+	  <input name="title" type="text" class="form-control" placeholder="Title" aria-describedby="basic-addon1">
+	</div>
+	<br>
+
+	<div class="input-group">
+	  
+	  <input name="description" type="text" class="form-control" placeholder="Description" aria-describedby="basic-addon1">
+	</div>
+	<br>
+
+	<div class="input-group">
+	  
+	  <input name="photo" type="file" class="form-control" aria-describedby="basic-addon1">
+	</div>
+	<br>
+
+	<div class="input-group">
+	  
+	  <input name="link" type="text" class="form-control" placeholder="Link" aria-describedby="basic-addon1">
+	</div>
+	<br>
+
+	<input name="user" type="hidden" value=<%= user.id  %> >
+
+
+
+	<input value="add work" type="submit" class="btn btn-default">
+	
+</form>

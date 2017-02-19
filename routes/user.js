@@ -10,7 +10,7 @@ router.get('/login', function(req, res){
 
 //router.post('/login', userController.login);
 
-router.post("/login", passport.authenticate("login", {successRedirect: "/", failureRedirect: "/login"}));
+router.post("/login", passport.authenticate("login", {successRedirect: "/", failureRedirect: "/user/login"}));
 
 router.get("/logout", function(req, res) {
 	req.logout();

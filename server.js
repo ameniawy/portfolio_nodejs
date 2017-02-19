@@ -2,9 +2,8 @@ var express = require('express'),
 	app = express(),
 	port = 8080,
 	ejsLayouts = require("express-ejs-layouts"),
+	fileUpload = require('express-fileupload'),
 	mongoose = require('mongoose');
-
-
 
 var	bodyParser = require("body-parser"),
 	cookieParser = require("cookie-parser"),
@@ -14,8 +13,7 @@ var	bodyParser = require("body-parser"),
 
 // Model we are using to communicate with the DB
 require('./models/user')
-
-
+require('./models/post')
 
 
 // BodyParser Middleware
@@ -65,9 +63,11 @@ app.use(function (req, res, next) {
 // ROUTES
 var routes = require('./routes/routes');
 var user_routes = require('./routes/user');
+var student_routes = require('./routes/student');
 
 app.use('/', routes);
 app.use('/user', user_routes);
+app.use('/student', student_routes);
 
 app.listen(port);
 console.log('sever on port %s',port);

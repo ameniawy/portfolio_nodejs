@@ -37,7 +37,9 @@
       </form>
       <ul class="nav navbar-nav navbar-right">
       <% if(req.user){ %>
+        <li><a href="/student/<%= req.user.id %>" ><%= req.user.name %></a></li>
         <li><a href="/user/logout">Logout</a></li>
+        <li><a href="/student/addwork">Add Post</a></li>
       <% }else{ %>
         <li><a href="/user/register">Register</a></li>
         <li><a href="/user/login">Login</a></li>

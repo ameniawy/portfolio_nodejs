@@ -1,0 +1,12 @@
+
+<ul class="list-group">
+	<% posts.forEach(function(post){%>
+  <li class="list-group-item"><h3>Title: <%= post.title %></h3><p>Link: <%= post.link %></p></li>
+  <div class="col-xs-6 col-md-3">
+    <a href="#" class="thumbnail">
+ 		<img src=<%= post.photo %> alt="">
+      
+    </a>
+  </div>
+	<% }); %>
+</ul>
