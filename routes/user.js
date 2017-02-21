@@ -10,10 +10,14 @@ router.get('/login', function(req, res){
 
 //router.post('/login', userController.login);
 
-router.post("/login", passport.authenticate("login", {successRedirect: "/", failureRedirect: "/user/login"}));
+router.post("/login", passport.authenticate("login", {successRedirect: "/", failureRedirect: "/user/login", failureFlash: true}), 
+	function(req, res) {
+    	res.redirect('/student');
+  });
 
 router.get("/logout", function(req, res) {
 	req.logout();
+	req.flash('success_msg', 'You are logged out');
 	res.redirect("/");
 });
 

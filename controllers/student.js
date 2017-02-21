@@ -54,6 +54,7 @@ module.exports.add_work = [
 						})
 
 					}
+					req.flash('success_msg', 'Work added successfully');
 					res.redirect('/student/addwork');
 				});	
 	}

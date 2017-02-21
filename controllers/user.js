@@ -35,10 +35,12 @@ module.exports.register = [
 					if(err){
 					 if(err.name === 'MongoError') {
 					 	console.log('duplicate username');
+					 	req.flash('error_msg', 'Duplicate username');
 					 	return res.render('register', {message:'Duplicate username'});
 					 }
 					}
 					console.log(user);
+					req.flash('success_msg', 'You are registered and can now login');
 					res.redirect('/user/login');
 				});	
 	}

@@ -3,9 +3,9 @@ var express = require('express'),
 	port = 8080,
 	ejsLayouts = require("express-ejs-layouts"),
 	fileUpload = require('express-fileupload'),
-	mongoose = require('mongoose');
-
-var	bodyParser = require("body-parser"),
+	flash = require('connect-flash'),
+	mongoose = require('mongoose'),
+	bodyParser = require("body-parser"),
 	cookieParser = require("cookie-parser"),
 	passport = require("passport"),
 	session = require("express-session");
@@ -41,24 +41,35 @@ app.use(passport.session());
 app.use(express.static(__dirname + '/public'));	
 
 
-//set view engine (default is jade), this is used to parse data in the html files
+//set view engine
 app.set('view engine', 'ejs');
 app.use(ejsLayouts);
 
 
-// Connecting to the mongoDB with the DB 'example'
+// Connecting to the mongoDB with the DB 'guc'
 mongoose.connect('mongodb://localhost/guc')
 
+
+// Set up passport
 var setUpPassport = require("./setuppassport");
 setUpPassport();
+
+
+// Connect Flash
+app.use(flash());
+
 
 // Global Variables
 app.use(function (req, res, next) {
 	res.locals.req = req;
 	res.locals.res = res;
+	res.locals.success_msg = req.flash('success_msg');
+	res.locals.error_msg = req.flash('error_msg');
+	res.locals.error = req.flash('error');
 	res.locals.user = req.user || null;
 	next();
 });
+
 
 // ROUTES
 var routes = require('./routes/routes');
@@ -69,5 +80,7 @@ app.use('/', routes);
 app.use('/user', user_routes);
 app.use('/student', student_routes);
 
+
+// Server init
 app.listen(port);
 console.log('sever on port %s',port);

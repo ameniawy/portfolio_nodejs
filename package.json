@@ -21,7 +21,8 @@
     "multer": "^1.3.0",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
-    "passport-local": "latest"
+    "passport-local": "latest",
+    "connect-flash": "latest"
   },
   "author": "ameniawy",
   "license": "ISC"
