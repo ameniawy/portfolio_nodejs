@@ -1,0 +1,17 @@
+
+<div class="text-center">
+	<h1>All Students' work</h1>
+</div>
+<ul class="list-group">
+	<% posts.forEach(function(post){%>
+		<li class="list-group-item">
+			<h3>Title: <%= post.title %></h3>
+			<p><h3>Description: </h3><%= post.description %></p>
+			<p>Link to work: <a href="<%= post.link %>"><%= post.link %></a></p>
+			<p>By: <a href='/student/<%= post.user %>'><%= post.user %></a></p>
+			<% if(post.photo) { %>
+			 	<img src=<%= post.photo %> >
+			<% } %>
+		</li>
+	<% }); %>
+</ul>

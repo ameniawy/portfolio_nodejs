@@ -19,7 +19,7 @@ router.get('/addwork', ensureAuthenticated, function(req, res){
 router.post('/addwork', upload.single('photo'), studentController.add_work);
 
 
-router.get('/:id', studentController.view_user);
+router.get('/:username', studentController.view_user);
 
 
 // Function that checks if user is logged in

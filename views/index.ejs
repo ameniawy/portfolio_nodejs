@@ -6,7 +6,10 @@
 
 <ul class="list-group">
 	<% users.forEach(function(user){%>
-  <li class="list-group-item"><h3>Name: <%= user.name %></h3><p>E Mail: <%= user.email %></p></li>
+	  <li class="list-group-item">
+		  <h3>Name: <%= user.name %></h3>
+		  <p>E Mail: <%= user.email %></p>
+	  </li>
 	<% }); %>
 </ul>
 

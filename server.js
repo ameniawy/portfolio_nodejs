@@ -14,6 +14,7 @@ var	bodyParser = require("body-parser"),
 // Model we are using to communicate with the DB
 require('./models/user')
 require('./models/post')
+require('./models/tag')
 
 
 // BodyParser Middleware
@@ -52,7 +53,6 @@ var setUpPassport = require("./setuppassport");
 setUpPassport();
 
 // Global Variables
-// Global Vars
 app.use(function (req, res, next) {
 	res.locals.req = req;
 	res.locals.res = res;

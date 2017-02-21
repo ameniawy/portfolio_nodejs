@@ -1,5 +1,7 @@
 var mongoose = require('mongoose'),
 	User = mongoose.model('user'),
+	Tag = mongoose.model('tag'),
+	Post = mongoose.model('post'),
 	bcrypt = require('bcrypt');
 
 
@@ -30,12 +32,40 @@ module.exports.register = [
 	},
 	function(req,res,next) {
 		User.create(req.body, function(err, user) {
-					if(err) return next(err);
+					if(err){
+					 if(err.name === 'MongoError') {
+					 	console.log('duplicate username');
+					 	return res.render('register', {message:'Duplicate username'});
+					 }
+					}
 					console.log(user);
 					res.redirect('/user/login');
 				});	
 	}
 
+];
+
+
+module.exports.search = [
+	function(req, res, next){
+		if(req.body.search){
+			var output = [];
+			console.log(req.body.search);
+			Tag.find({tag:req.body.search}, function(err,tags){
+				if(err) return next(err);
+				tags.forEach(function(tag){
+					Post.findById(tag.post_id, function(err, posts){
+						output.push(posts);
+						//console.log(output);
+					});
+
+				}, function(){
+					console.log(output);
+				});
+					
+			});
+		}
+	}
 ];
 
 

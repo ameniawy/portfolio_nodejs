@@ -22,6 +22,7 @@ router.get('/register', function(req, res){
 });
 
 router.post('/register', userController.register);
+//router.post('/search', userController.search);
 
 
 router.get('/secret', userController.secret);

@@ -8,7 +8,7 @@ var UserSchema = new Schema({
 	birthdate:Date,
 	type:String,
 	degree:String,
-	username:String,
+	username:{ type:String, unique:true, index:true, required:true, dropDups: true},
 	password:String
 });
 
