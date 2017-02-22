@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
 // START OF CONTROLLER/////
 ///////////////////////////
 
-
+// Returns all users to the home page
 module.exports.index = [
 	function(req,res,next) {
 		User.find({}, function(err,users){
@@ -24,10 +24,29 @@ module.exports.index = [
 // Register new user
 module.exports.register = [
 	function(req,res,next) {
-		if("name" in req.body && req.body !== ' ') {
-			next();
+		var name = req.body.name;
+		var email = req.body.email;
+		var username = req.body.username;
+		var password = req.body.password;
+		var password2 = req.body.password2;
+
+		// Validation
+		req.checkBody('name', 'Name is required').notEmpty();
+		req.checkBody('email', 'Email is required').notEmpty();
+		req.checkBody('email', 'Email is not valid').isEmail();
+		req.checkBody('username', 'Username is required').notEmpty();
+		req.checkBody('password', 'Password is required').notEmpty();
+		req.checkBody('password2', 'Passwords do not match').equals(req.body.password);
+
+		var errors = req.validationErrors();
+
+		if(errors){
+			console.log(errors);
+			res.render('register',{
+				errors:errors
+			});
 		} else {
-			res.sendStatus(400);
+			next();
 		}
 	},
 	function(req,res,next) {
@@ -36,7 +55,7 @@ module.exports.register = [
 					 if(err.name === 'MongoError') {
 					 	console.log('duplicate username');
 					 	req.flash('error_msg', 'Duplicate username');
-					 	return res.render('register', {message:'Duplicate username'});
+					 	return res.render('register');
 					 }
 					}
 					console.log(user);
@@ -48,6 +67,7 @@ module.exports.register = [
 ];
 
 
+// NOT USED
 module.exports.search = [
 	function(req, res, next){
 		if(req.body.search){
@@ -71,6 +91,7 @@ module.exports.search = [
 ];
 
 
+// NOT USED
 // Page that requires auth
 module.exports.secret = function(req, res, next){
 	if(req.isAuthenticated()){

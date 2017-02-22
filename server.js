@@ -4,6 +4,7 @@ var express = require('express'),
 	ejsLayouts = require("express-ejs-layouts"),
 	fileUpload = require('express-fileupload'),
 	flash = require('connect-flash'),
+	expressValidator = require('express-validator'),
 	mongoose = require('mongoose'),
 	bodyParser = require("body-parser"),
 	cookieParser = require("cookie-parser"),
@@ -15,12 +16,32 @@ var express = require('express'),
 require('./models/user')
 require('./models/post')
 require('./models/tag')
+require('./models/portfolio')
 
 
 // BodyParser Middleware
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+
+// Express Validator
+app.use(expressValidator({
+  errorFormatter: function(param, msg, value) {
+      var namespace = param.split('.')
+      , root    = namespace.shift()
+      , formParam = root;
+
+    while(namespace.length) {
+      formParam += '[' + namespace.shift() + ']';
+    }
+    return {
+      param : formParam,
+      msg   : msg,
+      value : value
+    };
+  }
+}));
 
 
 // Express Session

@@ -1,0 +1,20 @@
+
+<% if(req.user){ %>
+	<div class="text-center">
+		<h2><%= req.user.name %>'s Profile</h2>
+		<br><br>
+	</div>
+<% } %>
+<ul class="list-group">
+	<% posts.forEach(function(post){%>
+		<li class="list-group-item"><h3>Title: <%= post.title %></h3>
+			<p>Description: <%= post.description %></p>
+			<p>Link to work: <a href="<%= post.link %>"><%= post.link %></a></p>
+			<% if(post.photo) { %>
+			 		<img src=<%= post.photo %> >
+			 		<br><br>
+			<% } %>
+			<p>By: <%= post.user %></p>
+		</li>
+	<% }); %>
+</ul>

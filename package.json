@@ -1,8 +1,8 @@
 {
-  "name": "blog",
+  "name": "portfolio",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,14 +15,12 @@
     "express-ejs-layouts": "latest",
     "express-fileupload": "^0.1.1",
     "express-session": "latest",
-    "jsonwebtoken": "^7.3.0",
-    "mongodb": "latest",
     "mongoose": "latest",
     "multer": "^1.3.0",
     "passport": "^0.3.2",
-    "passport-jwt": "^2.2.1",
     "passport-local": "latest",
-    "connect-flash": "latest"
+    "connect-flash": "latest",
+    "express-validator": "latest"
   },
   "author": "ameniawy",
   "license": "ISC"

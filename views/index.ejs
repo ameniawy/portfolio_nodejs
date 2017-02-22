@@ -1,14 +1,16 @@
 
 <h1>Welcome to the home page</h1>
 <% if(user) { %>
-	<p>ya <%= user.name %></p>
+	<h2><%= user.name %></h2>
 <% } %>
 
+<h3>Users: </h3>
 <ul class="list-group">
 	<% users.forEach(function(user){%>
 	  <li class="list-group-item">
 		  <h3>Name: <%= user.name %></h3>
 		  <p>E Mail: <%= user.email %></p>
+		  <a href="/student/<%= user.username %>"><%= user.name %>'s Profile</a>
 	  </li>
 	<% }); %>
 </ul>

@@ -8,7 +8,6 @@ router.get('/login', function(req, res){
 	res.render('login');
 });
 
-//router.post('/login', userController.login);
 
 router.post("/login", passport.authenticate("login", {successRedirect: "/", failureRedirect: "/user/login", failureFlash: true}), 
 	function(req, res) {
@@ -22,7 +21,7 @@ router.get("/logout", function(req, res) {
 });
 
 router.get('/register', function(req, res){
-	res.render('register');
+	res.render('register', {errors:[]});
 });
 
 router.post('/register', userController.register);

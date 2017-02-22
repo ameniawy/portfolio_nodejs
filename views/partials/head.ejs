@@ -8,7 +8,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/student">All Portofolios</a>
+      <a class="navbar-brand" href="/">Home</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
@@ -25,7 +25,6 @@
       <% if(req.user){ %>
         <li><a href="/student/<%= req.user.username %>" ><span class="label label-primary"><%= req.user.username %></span></a></li>
         <li><a href="/user/logout">Logout</a></li>
-        <li><a href="/student/addwork">Add Post</a></li>
       <% }else{ %>
         <li><a href="/user/register">Register</a></li>
         <li><a href="/user/login">Login</a></li>

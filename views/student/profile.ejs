@@ -5,16 +5,55 @@
 		<br><br>
 	</div>
 <% } %>
-<ul class="list-group">
-	<% posts.forEach(function(post){%>
-		<li class="list-group-item"><h3>Title: <%= post.title %></h3>
-			<p>Description: <%= post.description %></p>
-			<p>Link to work: <a href="<%= post.link %>"><%= post.link %></a></p>
-			<% if(post.photo) { %>
-			 		<img src=<%= post.photo %> >
-			 		<br><br>
-			<% } %>
-			<p>By: <%= post.user %></p>
-		</li>
-	<% }); %>
-</ul>
+
+<% if(portfolio) { %>
+
+	<h1><%= portfolio.name %></h1>
+	<img src=<%= portfolio.photo %> >
+
+
+	<h2>Links</h2>
+	<ul class="list-group">
+		<% portfolio.links.forEach(function(link){%>
+			<li class="list-group-item">
+			<h3><%= link %></h3>
+			<a href="<%= link %>"><%= link %></a>
+			</li>
+		<% }); %>
+	</ul>
+
+	<% if(req.user && req.user.username === portfolio.user){ %>
+		<form method="post" action="/student/add_link">
+			<input type="text" name="link">
+			<input type="hidden" name="portfolio_id" value="<%= portfolio.id %>">
+			<input type="submit" value="Add Link">
+		</form>
+	<% } %>
+
+	<h2>Screenshots</h2>
+	<ul class="list-group">
+		<% portfolio.screenshots.forEach(function(photo){%>
+			<li class="list-group-item"><h3>
+				 		<img class="img-thumbnail" src=<%= photo %> >
+				 		<br><br>
+			</li>
+		<% }); %>
+	</ul>
+
+	<% if(req.user && req.user.username === portfolio.user){ %>
+		<form method="post" action="/student/add_screenshot" encType="multipart/form-data">
+			<input type="file" name="photo">
+			<input type="hidden" name="portfolio_id" value="<%= portfolio.id %>">
+			<input type="submit" value="Add Screenshot">
+		</form>
+		<br><br><br>
+	<% } %>
+<% } else if(req.user) { %>
+	<h2>Click here to create a new portfolio</h2>
+	<a href="/student/portfolio">
+	   <button  class="btn btn-default">Create New Portfolio</button>
+	</a>
+<% } else { %>
+	<h1>This user doesn't have a portfolio</h1>
+<% } %>
+

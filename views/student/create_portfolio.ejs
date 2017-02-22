@@ -1,0 +1,34 @@
+
+<h2>Create a Portofolio</h2>
+<form method="post" action="/student/portfolio" encType="multipart/form-data">
+
+	<div class="input-group">
+	  
+	  <input name="name" type="text" class="form-control" placeholder="Full Name" aria-describedby="basic-addon1">
+	</div>
+	<br>
+
+
+	<div class="input-group">
+	  <label>Personal Photo</label>
+	  <input name="photo" type="file" class="form-control" aria-describedby="basic-addon1">
+	</div>
+	<br>
+
+	<div class="input-group">
+	  <label>Screenshot</label>
+	  <input name="screenshots" type="file" class="form-control" aria-describedby="basic-addon1">
+	</div>
+	<br>
+
+	<div class="input-group">
+	  
+	  <input name="links" type="text" class="form-control" placeholder="Link" aria-describedby="basic-addon1">
+	</div>
+	<br>
+
+	<input name="user" type="hidden" value=<%= user.username  %> >
+
+	<input value="create" type="submit" class="btn btn-default">
+	
+</form>
