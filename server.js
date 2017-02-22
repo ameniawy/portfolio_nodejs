@@ -72,7 +72,7 @@ mongoose.connect('mongodb://localhost/guc')
 
 
 // Set up passport
-var setUpPassport = require("./setuppassport");
+var setUpPassport = require("./middleware/setuppassport");
 setUpPassport();
 
 
