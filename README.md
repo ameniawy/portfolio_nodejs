@@ -37,7 +37,7 @@ We will also use a model to connect to DB for fetching and inserting records
 ## GIT COMMANDS
 For the initial pull:
 ```git
-git clone https://github.com/ameniawy/meansquad.git
+git clone https://github.com/ameniawy/portfolio_nodejs.git
 ```
 
 if you want to create a new branch:
