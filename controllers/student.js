@@ -17,6 +17,16 @@ module.exports.index = [
 ];
 
 
+module.exports.summary = [
+	function(req, res, next){
+		Portfolio.find({}, function(err, data){
+			if(err) return next(err);
+			res.render('summary', {data:data});
+		});
+	}
+];
+
+
 // Create Portfolio
 module.exports.create_portfolio = [
 		function(req,res,next){

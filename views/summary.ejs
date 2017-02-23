@@ -1,0 +1,24 @@
+
+<h2>Portfolios: </h2>
+
+<ul class="list-group">
+	<% data.forEach(function(portfolio){%>
+		<li class="list-group-item">
+			<a href="/student/<%= portfolio.user %>"><h3><%= portfolio.name %></h3></a>
+			<% if(portfolio.photo) { %>
+				<img class="img-thumbnail" src=<%= portfolio.photo %> >
+			<% } %>
+			<hr>
+			<% if(portfolio.links && portfolio.links.length !== 0) { %>
+				<a href="<%= portfolio.links[0] %>"><%= portfolio.links[0] %></a>
+			<% } %>
+
+			<% if(portfolio.screenshots && portfolio.screenshots.length !== 0) { %>
+			 		<img class="img-thumbnail" src=<%= portfolio.screenshots[0] %> >
+			<% } %>
+			
+		</li>
+	<% }); %>
+</ul>
+
+
