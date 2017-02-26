@@ -35,7 +35,7 @@ module.exports.create_portfolio = [
 				}
 				if(req.body.link){
 					var link = req.body.link;
-					if(!link.startsWith('http://')){
+					if(!link.startsWith('http://') && !link.startsWith('https://')){
 						req.body.link = 'http://' + link;
 					}					
 				}
@@ -58,9 +58,8 @@ module.exports.create_portfolio = [
 // This function adds a new link to the portfolio
 module.exports.add_link = function(req, res){
 	var portfolio_id = req.body.portfolio_id;
-	console.log(portfolio_id);
 	var link = req.body.link;
-	if(!link.startsWith('http://')){
+	if(!link.startsWith('http://') && !link.startsWith('https://')){
 		link = 'http://' + link;
 	}
 	

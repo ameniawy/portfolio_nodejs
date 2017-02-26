@@ -1,10 +1,12 @@
 
 <% if(portfolio) { %>
-	<div class="page-header">
-		<h1><%= portfolio.name %></h1>
+	<div class="text-center">
+		<div class="page-header">
+			<h1><%= portfolio.name %></h1>
+		</div>
+		<img src=<%= portfolio.photo %> >
 	</div>
-	<img src=<%= portfolio.photo %> >
-
+	<hr>
 
 	<h1 class="text-center">Links</h1>
 	<div class="row">

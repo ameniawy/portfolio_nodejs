@@ -1,14 +1,16 @@
 
-<h2>Portfolios: </h2>
+<h1 class="text-center">Portfolios</h1><br>
 
 <ul class="list-group">
 	<% data.forEach(function(portfolio){%>
 		<li class="list-group-item">
+		<div class="text-center">
 			<a href="/student/<%= portfolio.user %>"><h3><span class="glyphicon glyphicon-user"></span> <%= portfolio.name %></h3></a>
 			<% if(portfolio.photo) { %>
 				<img class="img-thumbnail" src=<%= portfolio.photo %> >
 			<% } %>
 			<hr>
+		</div>
 			<div class="row">
 				<% if(portfolio.links && portfolio.links.length !== 0) { %>
 					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">

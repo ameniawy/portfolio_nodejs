@@ -73,3 +73,21 @@
     color: black;
     position: absolute;
 }
+
+/*.navbar-default {
+  background-color: #3b5998;
+  border-color: #e7e7e7;
+}
+
+.navbar-default .navbar-brand {
+  color: #000;
+}
+
+a:link, a:visited {
+    font-color: #fff;
+}
+
+a:hover, a:active {
+    background-color: white;
+    font-color: black;
+}*/
