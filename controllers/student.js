@@ -67,6 +67,7 @@ module.exports.create_portfolio = [
 module.exports.add_link = function(req, res){
 	var portfolio_id = req.body.portfolio_id;
 	console.log(portfolio_id);
+	
 	Portfolio.findByIdAndUpdate(portfolio_id,{
 		$push: {"links": req.body.link}
 	}, {safe: true, upsert: true, new : true}, function(err, portfolio){

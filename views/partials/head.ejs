@@ -8,22 +8,19 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/">Home</a>
+      <a class="navbar-brand" href="/">AM</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav">
-      </ul>
-      <form method="post" action="/user/search" class="navbar-form navbar-left">
-        <div class="form-group">
-          <input name="search" type="text" class="form-control" placeholder="Search">
-        </div>
-        <button type="submit" class="btn btn-default">Search</button>
-      </form>
       <ul class="nav navbar-nav navbar-right">
       <% if(req.user){ %>
-        <li><a href="/student/<%= req.user.username %>" ><span class="label label-primary"><%= req.user.username %></span></a></li>
+        <li>
+          <a class="btn btn-default btn-sm" href="/student/<%= req.user.username %>" >
+            <span class="glyphicon glyphicon-user"></span> <%= req.user.username %>
+          </a>
+        </li>
+
         <li><a href="/user/logout">Logout</a></li>
       <% }else{ %>
         <li><a href="/user/register">Register</a></li>
@@ -40,7 +37,6 @@
   <% } %>
 
   <% if(error_msg && error_msg.length !== 0){ %>
-  <% console.log(error_msg.length); %>
     <div class="alert alert-danger"><%= error_msg %></div>
   <% } %>
 

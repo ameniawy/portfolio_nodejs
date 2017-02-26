@@ -4,19 +4,29 @@
 <ul class="list-group">
 	<% data.forEach(function(portfolio){%>
 		<li class="list-group-item">
-			<a href="/student/<%= portfolio.user %>"><h3><%= portfolio.name %></h3></a>
+			<a href="/student/<%= portfolio.user %>"><h3><span class="glyphicon glyphicon-user"></span> <%= portfolio.name %></h3></a>
 			<% if(portfolio.photo) { %>
 				<img class="img-thumbnail" src=<%= portfolio.photo %> >
 			<% } %>
 			<hr>
-			<% if(portfolio.links && portfolio.links.length !== 0) { %>
-				<a href="<%= portfolio.links[0] %>"><%= portfolio.links[0] %></a>
-			<% } %>
+			<div class="row">
+				<% if(portfolio.links && portfolio.links.length !== 0) { %>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<h3>Link</h3>
+						<a href="<%= portfolio.links[0] %>"><%= portfolio.links[0] %></a>
+					</div>
+				<% } %>
 
-			<% if(portfolio.screenshots && portfolio.screenshots.length !== 0) { %>
-			 		<img class="img-thumbnail" src=<%= portfolio.screenshots[0] %> >
-			<% } %>
-			
+				<% if(portfolio.screenshots && portfolio.screenshots.length !== 0) { %>
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<h3>Image</h3>
+						<div class="thumbnail">
+				 			<img src=<%= portfolio.screenshots[0] %> >
+			 			</div>
+			 		</div>
+				<% } %>
+			</div>
+			<br><br><br>
 		</li>
 	<% }); %>
 </ul>
