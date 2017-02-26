@@ -15,7 +15,6 @@ var express = require('express'),
 // Model we are using to communicate with the DB
 require('./models/user')
 require('./models/post')
-require('./models/tag')
 require('./models/portfolio')
 
 
@@ -104,4 +103,4 @@ app.use('/student', student_routes);
 
 // Server init
 app.listen(port);
-console.log('sever on port %s',port);
+console.log('Sever on port %s',port);

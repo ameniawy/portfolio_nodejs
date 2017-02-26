@@ -2,32 +2,30 @@
 var express = require('express');
 var router = express.Router();
 var studentController = require('../controllers/student');
-var passport = require("passport");
+
+// File upload package
 var multer  = require('multer');
 var upload = multer({ dest: './public/uploads/', rename: function (fieldname, filename) {
     return filename.replace(/\W+/g, '-').toLowerCase() + Date.now()
   } });
 
 
-//router.get('/', studentController.index);
-
-/*router.get('/addwork', ensureAuthenticated, function(req, res){
-	res.render('student/add');
-});*/
+router.get('/', studentController.summary);
 
 
-//router.post('/addwork', upload.single('photo'), studentController.add_work);
-
+// GET, POST for creating a portfolio
 router.get('/portfolio', ensureAuthenticated, function(req, res){
 	res.render('student/create_portfolio');
 });
 router.post('/portfolio', upload.any(), studentController.create_portfolio);
 
 
+// POST of adding a link or a screenshot to a certain portfolio
 router.post('/add_link', studentController.add_link);
 router.post('/add_screenshot', upload.single('photo'), studentController.add_screenshot);
 
 
+// Get the profile of a certain user
 router.get('/:username', studentController.profile);
 
 

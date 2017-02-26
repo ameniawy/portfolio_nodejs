@@ -1,20 +1,6 @@
 var mongoose = require('mongoose'),
 	Post = mongoose.model('post'),
-	Portfolio = mongoose.model('portfolio'),
-	Tag = mongoose.model('tag');
-
-
-// NOT USED
-// Returns all submissions from users
-module.exports.index = [
-	function(req,res,next) {
-		Post.find({}, function(err,posts){
-			if(err) return next(err);
-			res.render('student/index',{posts:posts});	
-		});
-		
-	}
-];
+	Portfolio = mongoose.model('portfolio');
 
 
 module.exports.summary = [
@@ -47,6 +33,12 @@ module.exports.create_portfolio = [
 						}
 					});
 				}
+				if(req.body.link){
+					var link = req.body.link;
+					if(!link.startsWith('http://')){
+						req.body.link = 'http://' + link;
+					}					
+				}
 				next();
 			}
 		},
@@ -67,9 +59,13 @@ module.exports.create_portfolio = [
 module.exports.add_link = function(req, res){
 	var portfolio_id = req.body.portfolio_id;
 	console.log(portfolio_id);
+	var link = req.body.link;
+	if(!link.startsWith('http://')){
+		link = 'http://' + link;
+	}
 	
 	Portfolio.findByIdAndUpdate(portfolio_id,{
-		$push: {"links": req.body.link}
+		$push: {"links": link}
 	}, {safe: true, upsert: true, new : true}, function(err, portfolio){
 		console.log(portfolio);
 		res.redirect('/student/' + req.user.username);
@@ -100,8 +96,20 @@ module.exports.profile = function(req, res){
 }
 
 
+
+// NOT USED
+// Returns all submissions from users
+/*module.exports.index = [
+	function(req,res,next) {
+		Post.find({}, function(err,posts){
+			if(err) return next(err);
+			res.render('student/index',{posts:posts});	
+		});
+		
+	}
+];*/
 // Register new user
-module.exports.add_work = [
+/*module.exports.add_work = [
 	function(req,res,next) {
 		if("title" in req.body && req.body !== ' ') {
 			next();
@@ -144,14 +152,14 @@ module.exports.add_work = [
 				});	
 	}
 
-];
+];*/
 
 
 // NOT USED
 // View a certain user with a unique id
-module.exports.view_user = function(req, res){
+/*module.exports.view_user = function(req, res){
 	username = req.params.username;
 	Post.find({user:username}, function(err, posts){
 		res.render('student/profile', {posts:posts});
 	});
-}
+}*/

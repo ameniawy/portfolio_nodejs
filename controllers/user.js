@@ -1,27 +1,9 @@
 var mongoose = require('mongoose'),
 	User = mongoose.model('user'),
-	Tag = mongoose.model('tag'),
-	Post = mongoose.model('post'),
 	bcrypt = require('bcrypt');
 
 
-///////////////////////////
-// START OF CONTROLLER/////
-///////////////////////////
-
-// Returns all users to the home page
-module.exports.index = [
-	function(req,res,next) {
-		User.find({}, function(err,users){
-			if(err) return next(err);
-			res.render('index',{users:users});	
-		});
-		
-	}
-];
-
-
-// Register new user
+// Validate form and register new user
 module.exports.register = [
 	function(req,res,next) {
 		var name = req.body.name;
@@ -52,11 +34,11 @@ module.exports.register = [
 	function(req,res,next) {
 		User.create(req.body, function(err, user) {
 					if(err){
-					 if(err.name === 'MongoError') {
-					 	console.log('duplicate username');
-					 	req.flash('error_msg', 'Duplicate username');
-					 	return res.render('register');
-					 }
+						if(err.name === 'MongoError') {
+							console.log('duplicate username');
+							req.flash('error_msg', 'Duplicate username');
+							return res.render('register');
+						}
 					}
 					console.log(user);
 					req.flash('success_msg', 'You are registered and can now login');
@@ -64,30 +46,6 @@ module.exports.register = [
 				});	
 	}
 
-];
-
-
-// NOT USED
-module.exports.search = [
-	function(req, res, next){
-		if(req.body.search){
-			var output = [];
-			console.log(req.body.search);
-			Tag.find({tag:req.body.search}, function(err,tags){
-				if(err) return next(err);
-				tags.forEach(function(tag){
-					Post.findById(tag.post_id, function(err, posts){
-						output.push(posts);
-						//console.log(output);
-					});
-
-				}, function(){
-					console.log(output);
-				});
-					
-			});
-		}
-	}
 ];
 
 
@@ -106,3 +64,15 @@ module.exports.secret = function(req, res, next){
 		res.sendStatus(400);
 	}
 }
+
+// NOT USED
+// Returns all users to the home page
+module.exports.index = [
+	function(req,res,next) {
+		User.find({}, function(err,users){
+			if(err) return next(err);
+			res.render('index',{users:users});	
+		});
+		
+	}
+];

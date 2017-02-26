@@ -1,0 +1,75 @@
+
+.up {
+    margin-top: 2em;
+}
+
+.card {
+    overflow: hidden;
+    min-width: auto;
+    min-height: 250px;
+    position: relative;
+    border: 1px solid #dedede;
+    border-radius: 4px;
+    text-align: center;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 1);
+    color: #222616;
+}
+
+
+.word-card {
+    overflow: hidden;
+    min-width: auto;
+    min-height: auto;
+    position: relative;
+    border: 1px solid #dedede;
+    border-radius: 4px;
+    text-align: center;
+    padding: 0;
+    background-color: rgba(255, 255, 255, 1);
+    color: #222616;
+}
+
+.card .avatar {
+
+    position: relative;
+    margin: 15px auto 0px;
+    z-index: 100;
+    overflow: hidden;
+    line-height: 85px;
+}
+
+.card-cat {
+    min-height: auto !important;
+}
+.card-cat:active{
+    cursor: pointer;
+}
+.card .avatar img {  
+    width: 70px;
+    height: auto;
+}
+
+.card-text{
+    text-align: center;
+    padding: 10px;
+    
+}
+
+.selected{
+    background-color: #1abc9c;
+    color: white;
+    border: 0px;
+}
+
+.selected-timeline{
+   background-color:  #070804;
+    color: white;
+    border: 0px;
+}
+.checked-icon{
+    margin: 0 10px;
+    font-size: medium;
+    color: black;
+    position: absolute;
+}
