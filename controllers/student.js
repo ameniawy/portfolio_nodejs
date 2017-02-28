@@ -15,7 +15,7 @@ module.exports.summary = [
 module.exports.summary_page = [
 	function(req, res, next){
 	    var page = req.params.page;
-	    Portfolio.find({}).populate({ path: 'projects' })
+	    Portfolio.find({}).populate({ path: 'portfolios' })
 	        .limit(10)
 	        .skip(10 * page)
 	        .exec(function(err, portfolios) {
