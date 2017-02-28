@@ -10,7 +10,7 @@ var upload = multer({ dest: './public/uploads/', rename: function (fieldname, fi
   } });
 
 
-router.get('/', studentController.summary);
+//router.get('/', studentController.summary);
 
 
 // GET, POST for creating a portfolio

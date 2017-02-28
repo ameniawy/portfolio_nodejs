@@ -1,5 +1,4 @@
 var mongoose = require('mongoose'),
-	Post = mongoose.model('post'),
 	Portfolio = mongoose.model('portfolio');
 
 
@@ -10,6 +9,27 @@ module.exports.summary = [
 			res.render('summary', {data:data});
 		});
 	}
+];
+
+
+module.exports.summary_page = [
+	function(req, res, next){
+	    var page = req.params.page;
+	    Portfolio.find({}).populate({ path: 'projects' })
+	        .limit(10)
+	        .skip(10 * page)
+	        .exec(function(err, portfolios) {
+	            Portfolio.count().exec(function(err, count) {
+	                if (err) { return next(err); }
+	                res.render('summary', {
+	                    data: portfolios,
+	                    current: page,
+	                    count: Math.ceil(count / 10)
+	                });
+
+	            });
+	        });
+		}
 ];
 
 

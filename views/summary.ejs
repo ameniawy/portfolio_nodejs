@@ -33,4 +33,13 @@
 	<% }); %>
 </ul>
 
+<ul class="pagination">
+	<% for(var i = 0 ; i < count; i++){ %>
+		<% if(i == current) { %>
+			<li class="active"><a href="/page/<%= i %>"><%= i + 1 %></a></li>
+		<% } else{ %>
+			<li><a href="/page/<%= i %>"><%= i + 1 %></a></li>
+	<% }} %>
+</ul>
+
 
