@@ -20,7 +20,9 @@
 .word-card {
     overflow: hidden;
     min-width: auto;
-    min-height: auto;
+    min-height: 250;
+    max-height: 200px;
+    max-width: 180px;
     position: relative;
     border: 1px solid #dedede;
     border-radius: 4px;
@@ -72,6 +74,11 @@
     font-size: medium;
     color: black;
     position: absolute;
+}
+
+img.resize{
+   max-width:120%;
+   max-height:120%;
 }
 
 /*.navbar-default {

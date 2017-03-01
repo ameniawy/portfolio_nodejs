@@ -1,34 +1,35 @@
 
-<h2>Create a Portofolio</h2>
+<div class="text-center"><h2>Create a Portfolio</h2></div><hr><br>
 <form method="post" action="/student/portfolio" encType="multipart/form-data">
 
-	<div class="input-group">
-	  
-	  <input name="name" type="text" class="form-control" placeholder="Full Name" aria-describedby="basic-addon1">
+	<div class="input-group input-group-md">
+		<span class="input-group-addon">Name</span>
+		<input name="name" type="text" class="form-control" placeholder="Full Name..">
 	</div>
 	<br>
 
-
-	<div class="input-group">
-	  <label>Personal Photo</label>
+	<div class="input-group input-group-md">
+	  <span class="input-group-addon"><i class="fa fa-camera-retro fa-fw"></i></span>
 	  <input name="photo" type="file" class="form-control" aria-describedby="basic-addon1">
 	</div>
 	<br>
 
-	<div class="input-group">
-	  <label>Screenshot</label>
+
+	<div class="input-group input-group-md">
+		<span class="input-group-addon">Link</span>
+		<input name="link" type="text" class="form-control" placeholder="http://google.com">
+	</div>
+	<br>
+
+	<div class="input-group input-group-md">
+	  <span class="input-group-addon">Screenshot</span>
 	  <input name="screenshots" type="file" class="form-control" aria-describedby="basic-addon1">
 	</div>
 	<br>
 
-
-
-
-
-	<br>
-
 	<input name="user" type="hidden" value=<%= user.username  %> >
-
-	<input value="create" type="submit" class="btn btn-default">
+	<div class="text-center">
+		<input value="Create Portfolio" type="submit" class="btn btn-default">
+	</div>
 	
 </form>

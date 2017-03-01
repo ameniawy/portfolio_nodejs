@@ -1,9 +1,12 @@
 
+
 <% if(portfolio) { %>
 	<div class="text-center">
 		<div class="page-header">
 			<h1><%= portfolio.name %></h1>
 		</div>
+	</div>
+	<div class="text-center">
 		<img src=<%= portfolio.photo %> >
 	</div>
 	<hr>
@@ -11,22 +14,48 @@
 	<h1 class="text-center">Links</h1>
 	<div class="row">
 		<% portfolio.links.forEach(function(link){%>
-			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-6 up">
+			<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6 up">
 				<div class="word-card">
 					<div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
 						<div class="thumbnail">
-			 				<img src="/website3.png" >
+							<a target="_blank" href="<%= link %>" >
+			 					<img  src="/website3.png" >
+			 				</a>
 			 			</div>
 		 			</div>
 					<div class="card-text">
-						<a href="<%= link %>"><b><%= link %></b></a>
+						<a target="_blank" title="<%= link %>" href="<%= link %>"><b><%= link.replace('http://', '').replace('www.','') %></b></a>
 					</div>
 				</div>
 			</div>
 		<% }); %>
 	</div>
 	<br>
+	<hr>
 
+
+	<h1 class="text-center">Screenshots</h1>
+	<div class="row">
+		<% portfolio.screenshots.forEach(function(photo){%>
+
+			<div class="col-lg-2 col-md-6 col-sm-6 col-xs-12">
+				<div class="thumbnail">
+					<a href="#<%= photo.replace('/uploads/','') %>" data-toggle="modal">
+	 					<img src=<%= photo %> >
+	 				</a>
+	 			</div>
+	 		</div>
+			<div class="modal fade bs-example-modal-lg" id="<%= photo.replace('/uploads/','') %>" aria-labelledby="..." tabindex="-1" role="dialog" >
+				<div class="modal-dialog modal-lg"  role="document">
+					<div class="modal-content">
+				  		<img  class="resize" src=<%= photo %> >
+					</div>
+				</div>
+			</div>
+		<% }); %>
+	</div>
+	<hr>
+	<br>
 	<% if(req.user && req.user.username === portfolio.user){ %>
 		<form method="post" action="/student/add_link">
 			<div class="input-group input-group-md">
@@ -41,31 +70,18 @@
 				</div>
 			</div>
 		</form>
+
+		<br>
+		<form method="post" action="/student/add_screenshot" encType="multipart/form-data">
+			<label class="btn btn-default btn-file">
+			    Choose File <input type="file" name="photo" style="display: none;">
+			</label>
+			<input type="hidden" name="portfolio_id" value="<%= portfolio.id %>">
+			<button type="submit" class = "btn-primary btn-sm">Add Screenshot</button>
+		</form>
+		<br><br>
 	<% } %>
 
-	<h1 class="text-center">Screenshots</h1>
-	<div class="row">
-		<% portfolio.screenshots.forEach(function(photo){%>
-				<div class="col-lg-12 col-md-6 col-sm-6 col-xs-12">
-					<div class="thumbnail">
-		 				<img src=<%= photo %> >
-		 			</div>
-		 		</div>
-		<% }); %>
-	</div>
-
-	<div>
-		<% if(req.user && req.user.username === portfolio.user){ %>
-			<form method="post" action="/student/add_screenshot" encType="multipart/form-data">
-				<label class="btn btn-default btn-file">
-				    Choose File <input type="file" name="photo" style="display: none;">
-				</label>
-				<input type="hidden" name="portfolio_id" value="<%= portfolio.id %>">
-				<button type="submit" class = "btn-primary btn-sm">Add Screenshot</button>
-			</form>
-			<br><br><br>
-		<% } %>
-	</div>
 
 <% } else if(req.user) { %>
 	<h2>Click here to create a new portfolio</h2>
@@ -75,4 +91,3 @@
 <% } else { %>
 	<h1>This user doesn't have a portfolio</h1>
 <% } %>
-

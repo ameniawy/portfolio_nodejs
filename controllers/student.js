@@ -12,15 +12,18 @@ module.exports.summary = [
 ];
 
 
+// Return summary page #page
 module.exports.summary_page = [
 	function(req, res, next){
 	    var page = req.params.page;
+
 	    Portfolio.find({}).populate({ path: 'portfolios' })
 	        .limit(10)
 	        .skip(10 * page)
 	        .exec(function(err, portfolios) {
 	            Portfolio.count().exec(function(err, count) {
-	                if (err) { return next(err); }
+	                if (err) return next(err);
+
 	                res.render('summary', {
 	                    data: portfolios,
 	                    current: page,
@@ -53,10 +56,10 @@ module.exports.create_portfolio = [
 						}
 					});
 				}
-				if(req.body.link){
+				if(req.body.links){
 					var link = req.body.link;
 					if(!link.startsWith('http://') && !link.startsWith('https://')){
-						req.body.link = 'http://' + link;
+						req.body.links = 'http://' + link;
 					}					
 				}
 				next();
@@ -106,7 +109,7 @@ module.exports.add_screenshot = function(req, res){
 }
 	
 
-// View a certain user with a unique id
+// View a certain user with a unique username
 module.exports.profile = function(req, res){
 	username = req.params.username;
 	Portfolio.findOne({user:username}, function(err, portfolio){
