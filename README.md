@@ -1,6 +1,7 @@
 # Mini Project
 This is the repo for my Software Engineering mini project which uses node JS.  This is basically a website where students and almuni can add their work and past experiences as a showcase.
 
+Find this app on: https://meniawyportfolio.herokuapp.com
 
 Before proceeding you need to install nodejs and mongoDB
 
