@@ -1,3 +1,5 @@
 node_modules/*
 .idea/*
-public/uploads/*
+public/uploads/*.png
+public/uploads/*.jpg
+public/uploads/*.jpeg
