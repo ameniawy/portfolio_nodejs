@@ -22,6 +22,9 @@
     "connect-flash": "latest",
     "express-validator": "latest"
   },
+  "engines" : {
+    "node" : "latest"
+  },
   "author": "ameniawy",
   "license": "ISC"
 }

@@ -1,6 +1,6 @@
 var express = require('express'),
 	app = express(),
-	port = 8080,
+	port = process.env.PORT || 8080,
 	ejsLayouts = require("express-ejs-layouts"),
 	fileUpload = require('express-fileupload'),
 	flash = require('connect-flash'),
