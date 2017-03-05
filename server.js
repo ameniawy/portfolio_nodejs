@@ -67,7 +67,8 @@ app.use(ejsLayouts);
 
 
 // Connecting to the mongoDB with the DB 'guc'
-mongoose.connect('mongodb://localhost/guc')
+//mongoose.connect('mongodb://localhost/guc')
+mongoose.connect('mongodb://menz:menz@ds119250.mlab.com:19250/guc')
 
 
 // Set up passport
