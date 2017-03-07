@@ -3,6 +3,8 @@ This is the repo for my Software Engineering mini project which uses node JS.  T
 
 Find this app on: https://meniawyportfolio.herokuapp.com
 
+or on: http://35.160.199.92:8080
+
 Before proceeding you need to install nodejs and mongoDB
 
 ## Running Node
